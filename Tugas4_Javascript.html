@@ -1,0 +1,92 @@
+<marquee anmouseover="javascript:stop()" anmouseout="javascript:start()">
+    <h2>KONVERSI KURS</h2>
+</marquee>
+<br/>
+<table border="0" align="justify" cellpadding="10" width="40%">
+<thead>
+    <tr bgcolor="beige">
+        <th colspan="2">Pembelian Barang dengan Konversi Kurs</th>
+    </tr>
+<hr/>
+</thead>
+<form id="frm">
+<tbody>
+    <tr>
+        <td width="25%"><label>Nama Pembeli </label></td>
+        <td>
+            <input type="text" name="nama" value="" placeholder=""
+                   size="50" maxlength="100"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%"><label>Nama Barang </label></td>
+        <td>
+            <input type="text" name="namabrng" value="" placeholder=""
+                   size="50" maxlength="100"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%"><label>Harga Barang </label></td>
+        <td>
+            <input type="text" name="hargabrng" value="" placeholder=""
+                   size="50" maxlength="100"/>
+        </td>
+    </tr>
+    <tr>
+        <td width="25%"><label>Jumlah Barang </label></td>
+        <td>
+            <input type="text" name="jlhbrng" value="" placeholder=""
+                   size="50" maxlength="100"/>
+        </td>
+    </tr>
+    <tr>
+        <td><label>Valuta Asing</label></td>
+        <td>
+        <select name="valas" onchange="javascript:konversiKurs()">
+        <option value="">--- Pilih Valas ---</option>
+        <option value="14917">------ USD ------</option>
+        <option value="10590">------ SGD ------</option>
+        <option value="14918">------ EUR ------</option>
+        </select>
+        </td>
+    </tr>
+</tbody>
+</form>
+<tfoot>
+    <tr bgcolor="beige">
+        <th colspan="2">
+            <input type="submit" name="proses" value="Kirim" />&nbsp;&nbsp;
+            <input type="reset" name="unproses" value="Batal" />
+        </th>
+    </tr>
+</tfoot>
+</table>
+<p id="isi">
+</p>
+<script>
+/*
+Hitung pembelian barang berdasarkan kurs valas yang dipilih.
+(Event Handle Js nya: onchange ketika pilih valas)
+hasilnya ditempatkan pada paragraf yang ber-id-kan isi
+*/
+    function konversiKurs(){
+        let namaPembeli = document.getElementById('frm').nama.value;
+        let namaBarang = document.getElementById('frm').namabrng.value;
+        let hargaBarang = document.getElementById('frm').hargabrng.value;
+        let jumlahBarang = document.getElementById('frm').jlhbrng.value;
+        let valas = document.getElementById('frm').valas.value;
+        let totalBayar = hargaBarang / parseInt(valas) * jumlahBarang;
+        let dataPembelian =''
+        document.getElementById('isi').innerHTML = totalBayar;
+        dataPembelian += `<tr>
+                        <td>DATA PEMBELIAN</td>
+                        <td><br/>Nama Pembeli   :${namaPembeli}</td>
+                        <td><br/>Nama Barang    :${namaBarang}</td>
+                        <td><br/>Harga Barang   :${hargaBarang}</td>
+                        <td><br/>Jumlah Barang  :${jumlahBarang}</td>
+                        <td><br/>Valuta Asing   :${valas}</td>
+                        <td><br/>Total Bayar    :${totalBayar}</td>
+                      </tr>`;
+        document.getElementById('isi').innerHTML = dataPembelian;
+    }
+</script>
