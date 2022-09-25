@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>INFORMASI GEMPA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  <body>
+    <h3 align="center">INFORMASI GEMPA</h3>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<table class="table table-bordered border-warning" border="2" align="center" cellpadding="10" cellspacing="1" width="60%">
+    <thead>
+    <tr align='center' bgcolor="beige">
+        <th>NO.</th>
+        <th>LOKASI</th>
+        <th>SKALA</th>
+        <th>DAMPAK GEMPA</th>
+    </tr>
+    </thead>
+<tbody>
+<script languange="javascript">
+    let no = 1; 
+    //----------membuat class----------
+    class Gempa{ 
+        constructor(lokasi, skala){
+            this.lokasi = lokasi;
+            this.skala = skala;
+        }
+    
+        getDampak(){
+            if(this.skala <=2) this.dampak = 'Gempa Tidak Terasa';
+            else if(this.skala >2 && this.skala <= 4) this.dampak = 'Bangunan Retak-Retak';
+            else if(this.skala >4 && this.skala <= 6) this.dampak = 'Bangunan Roboh';
+            else if(this.skala >6 ) this.dampak = 'Bangunan Roboh Berpotensi Tsunami';
+            else this.dampak = '';
+    
+            return this.dampak; 
+        }
+        
+        dataGempa(){
+            document.write(`<tr>
+            <td align="center">${no++}.</td>
+            <td>${this.lokasi}</td>
+            <td>${this.skala}</td>
+            <td>${this.getDampak()}</td>
+            </tr>`);
+        }
+    }
+    
+    //--------- Membuat Object --------
+    g1 = new Gempa('Situbondo', 6.5);
+    g2 = new Gempa('Magelang',3.0);
+    g3 = new Gempa('Batu',2.5);
+    g4 = new Gempa('Semarang',0.5);
+    g5 = new Gempa('Badung',1.2);
+    g6 = new Gempa('Samarinda',4.5);
+    g7 = new Gempa('Solo',5);
+    g8 = new Gempa('Sabang',1.9);
+    g9 = new Gempa('Papua',9);
+    g10 = new Gempa('Bali',3.3);
+    
+    g1.dataGempa(); g2.dataGempa(); g3.dataGempa(); g4.dataGempa(); g5.dataGempa(); 
+    g6.dataGempa(); g7.dataGempa(); g8.dataGempa(); g9.dataGempa(); g10.dataGempa();
+    
+    </script>
+</tbody>
+</table>
+    </body>
+</html>
